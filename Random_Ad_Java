@@ -1,0 +1,51 @@
+// updated with some real text
+  	// "hungry - Eat at joes <img src='image.png' />"
+		var ad_metadata = {
+			'ad0' : "Come Eat at The Dirty Burger",
+			'ad1' : "The Famous Mustard Tiger Will serve you",
+			'ad2' : "Frig Off Lahey",
+			'ad3' : "We're gonna make a lot of money today boys",
+			'ad4' : "Its predestination boys"		
+		};
+		
+				
+		rand_ad_display();
+		//
+		function rand_ad_display() {
+		
+			var ad_div = document.getElementById("ad");			
+			var ad_keys = [];		
+			var ad_key = "";
+			
+			/*
+				ad_keys[0] = 'ad0';
+				ad_keys[1] = 'ad1';
+				ad_keys[2] = 'ad2';
+				ad_keys[3] = 'ad3';
+				ad_keys[4] = 'ad4';
+				is the same as the for in statement below
+			*/
+			for ( ad_key in ad_metadata ) {
+				ad_keys.push(ad_key);
+			}
+			
+			//setting variables
+			var ad_keys_len = ad_keys.length;			
+			var rand_ad_key = getRandAdKey(ad_keys_len);
+			var ad_key_value = ad_keys[rand_ad_key];		
+			var ad_metadata_value = ad_metadata[ad_key_value];		
+			
+			//this changes the text in the ad picture to the current selection
+			ad_div.innerHTML = ad_metadata_value;
+			
+			//this sets the document title to be the same as the ad and restricted to 15 char
+			document.title =(ad_metadata_value.substr(0,15));	
+		}
+		
+		
+		
+		function getRandAdKey( len ) {
+			// gets random number, 0 to len(passed in)
+			return Math.floor( Math.random()* len);		
+		}
+		
